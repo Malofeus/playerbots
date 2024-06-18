@@ -73,7 +73,12 @@ bool PlayerbotAIConfig::Initialize()
 
     if (!config.SetSource(SYSCONFDIR"aiplayerbot.conf", "PlayerBots_"))
     {
-        if (!config.SetSource(_PLAYERBOTS_CONFIG, "PlayerBots_"))
+        bool configFound = false;
+        #ifdef CMANGOS 
+            configFound = !config.SetSource(_PLAYERBOTS_CONFIG, "PlayerBots_");
+        #endif
+        
+        if (!configFound)
         {
             sLog.outString("AI Playerbot is Disabled. Unable to open configuration file aiplayerbot.conf");
             return false;
