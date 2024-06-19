@@ -165,6 +165,20 @@ namespace ai
         virtual uint8 Calculate();
     };
 
+    class DurabilityInventoryValue : public Uint8CalculatedValue
+    {
+    public:
+        DurabilityInventoryValue(PlayerbotAI* ai, std::string name = "durability inventory") : Uint8CalculatedValue(ai, name) {}
+        virtual uint8 Calculate();
+    };
+
+    class LowestDurabilityValue : public Uint8CalculatedValue
+    {
+    public:
+        LowestDurabilityValue(PlayerbotAI* ai, std::string name = "lowest durability") : Uint8CalculatedValue(ai, name) {}
+        virtual uint8 Calculate();
+    };
+
      class SpeedValue : public Uint8CalculatedValue, public Qualified
     {
     public:
