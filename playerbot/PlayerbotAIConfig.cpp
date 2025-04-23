@@ -89,16 +89,11 @@ bool PlayerbotAIConfig::Initialize()
 
     if (!config.SetSource(SYSCONFDIR"aiplayerbot.conf", "PlayerBots_"))
     {
-#ifndef _PLAYERBOTS_CONFIG
-        sLog.outString("AI Playerbot is Disabled. Unable to open configuration file aiplayerbot.conf");
-        return false;
-#else
         if (!config.SetSource(_PLAYERBOTS_CONFIG, "PlayerBots_"))
         {
             sLog.outString("AI Playerbot is Disabled. Unable to open configuration file aiplayerbot.conf");
             return false;
         }
-#endif
     }
 
     enabled = config.GetBoolDefault("AiPlayerbot.Enabled", false);
