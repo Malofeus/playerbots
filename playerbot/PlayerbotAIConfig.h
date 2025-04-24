@@ -103,6 +103,9 @@ public:
     bool IsInRandomQuestItemList(uint32 id);
 	bool IsInPvpProhibitedZone(uint32 id);
 
+    void SetConfigFileName(const std::string& filename) { m_configFileName = filename; }
+    std::string m_configFileName;
+
     bool enabled;
     bool allowGuildBots;
     bool allowMultiAccountAltBots;
