@@ -11,6 +11,7 @@
 
 #include "playerbot/TravelMgr.h"
 
+#include <format>
 #include <iostream>
 #include <numeric>
 #include <iomanip>
