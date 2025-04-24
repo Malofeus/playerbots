@@ -11,12 +11,12 @@
 
 #include "playerbot/TravelMgr.h"
 
-#include <format>
 #include <iostream>
 #include <numeric>
 #include <iomanip>
 #include <boost/algorithm/string.hpp>
 #include <regex>
+#include <stdio.h>
 #include "PlayerbotLoginMgr.h"
 
 std::vector<std::string> ConfigAccess::GetValues(const std::string& name) const
@@ -91,7 +91,9 @@ bool PlayerbotAIConfig::Initialize()
     if (!config.SetSource(SYSCONFDIR"aiplayerbot.conf", "PlayerBots_"))
     {
     #ifdef _PLAYERBOTS_CONFIG
-        sLog.outString(std::format("{}",_PLAYERBOTS_CONFIG));
+        char buff[255];
+        snprintf(buff, sizeof(buff), "%s", _PLAYERBOTS_CONFIG);
+        sLog.outString(buff);
         if (!config.SetSource(_PLAYERBOTS_CONFIG, "PlayerBots_"))
         {
             sLog.outString("AI Playerbot is Disabled. Unable to open configuration file aiplayerbot.conf");
