@@ -86,14 +86,20 @@ inline ParsedUrl parseUrl(const std::string& url) {
 bool PlayerbotAIConfig::Initialize()
 {
     sLog.outString("Initializing AI Playerbot by ike3, based on the original Playerbot by blueboy");
-
+    sLog.outString(SYSCONFDIR);
     if (!config.SetSource(SYSCONFDIR"aiplayerbot.conf", "PlayerBots_"))
     {
+    #ifdef _PLAYERBOTS_CONFIG
+        sLog.outString(_PLAYERBOTS_CONFIG);
         if (!config.SetSource(_PLAYERBOTS_CONFIG, "PlayerBots_"))
         {
             sLog.outString("AI Playerbot is Disabled. Unable to open configuration file aiplayerbot.conf");
             return false;
         }
+    #else
+        sLog.outString("AI Playerbot is Disabled. Unable to open configuration file aiplayerbot.conf");
+        return false;
+    #endif
     }
 
     enabled = config.GetBoolDefault("AiPlayerbot.Enabled", false);
